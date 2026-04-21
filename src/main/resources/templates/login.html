@@ -1,0 +1,40 @@
+<!doctype html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+>
+  <head>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      th:href="@{/css/bootstrap.min.css}"
+    />
+    <title>GymTracker kirjaudu</title>
+  </head>
+  <body>
+    <div th:if="${param.error}" style="margin: 10px">
+      Invalid username and password.
+    </div>
+    <div th:if="${param.logout}" style="margin: 10px">
+      You have been logged out.
+    </div>
+    <form th:action="@{/login}" method="post">
+      <div style="margin: 10px">
+        <label>
+          User Name : <input type="text" name="username" class="form-control" />
+        </label>
+      </div>
+      <div style="margin: 10px">
+        <label>
+          Password:
+          <input type="password" name="password" class="form-control" />
+        </label>
+      </div>
+      <div style="margin: 10px">
+        <input type="submit" value="Sign In" class="btn btn-primary" />
+      </div>
+    </form>
+    <a th:href="@{/signup}" style="margin: 10px">Sign-up</a>
+  </body>
+</html>
