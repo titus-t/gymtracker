@@ -10,31 +10,74 @@
       rel="stylesheet"
       th:href="@{/css/bootstrap.min.css}"
     />
-    <title>GymTracker kirjaudu</title>
+    <title>GymTracker - Kirjaudu</title>
   </head>
-  <body>
-    <div th:if="${param.error}" style="margin: 10px">
-      Invalid username and password.
+  <body class="bg-light">
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-5">
+          <div class="card shadow-sm border-0">
+            <div class="card-body p-5">
+              <h2 class="text-center mb-4">Kirjaudu sisään</h2>
+
+              <div
+                th:if="${param.error}"
+                class="alert alert-danger text-center"
+              >
+                Väärä käyttäjätunnus tai salasana.
+              </div>
+              <div
+                th:if="${param.logout}"
+                class="alert alert-success text-center"
+              >
+                Olet kirjautunut ulos.
+              </div>
+
+              <form th:action="@{/login}" method="post">
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Käyttäjätunnus</label>
+                  <input
+                    type="text"
+                    name="username"
+                    class="form-control"
+                    placeholder="Syötä tunnus"
+                    required
+                  />
+                </div>
+                <div class="mb-4">
+                  <label class="form-label fw-bold">Salasana</label>
+                  <input
+                    type="password"
+                    name="password"
+                    class="form-control"
+                    placeholder="Syötä salasana"
+                    required
+                  />
+                </div>
+                <div class="d-grid gap-2">
+                  <button type="submit" class="btn btn-primary btn-lg">
+                    Kirjaudu
+                  </button>
+                </div>
+              </form>
+
+              <hr class="my-4" />
+
+              <div class="text-center">
+                <p class="mb-2">
+                  Eikö sinulla ole tunnusta?
+                  <a th:href="@{/signup}" class="text-decoration-none"
+                    >Rekisteröidy tästä</a
+                  >
+                </p>
+                <a th:href="@{/}" class="btn btn-outline-secondary btn-sm mt-2"
+                  >Takaisin etusivulle</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div th:if="${param.logout}" style="margin: 10px">
-      You have been logged out.
-    </div>
-    <form th:action="@{/login}" method="post">
-      <div style="margin: 10px">
-        <label>
-          User Name : <input type="text" name="username" class="form-control" />
-        </label>
-      </div>
-      <div style="margin: 10px">
-        <label>
-          Password:
-          <input type="password" name="password" class="form-control" />
-        </label>
-      </div>
-      <div style="margin: 10px">
-        <input type="submit" value="Sign In" class="btn btn-primary" />
-      </div>
-    </form>
-    <a th:href="@{/signup}" style="margin: 10px">Sign-up</a>
   </body>
 </html>
